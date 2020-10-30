@@ -14,6 +14,8 @@ import Form from './Dashboard/form'
 import Dogovor from './Dashboard/form/dogovor';
 import Chat from './Dashboard/chat';
 import Message from './Dashboard/chat/message';
+import Contracts from './Dashboard/form/myDogovors';
+import Zakups from './Dashboard/form/myZayavki';
 
 const { Header, Sider, Content } = Layout;
 
@@ -39,6 +41,11 @@ class Dashboard extends React.Component {
       selectedKey = '3'
     } else if (route.includes('chat')) {
       selectedKey = '4'
+    } else if (route.includes('contract')) {
+      selectedKey = '5'
+    } 
+    else if (route.includes('zakups')) {
+      selectedKey = '6'
     } 
     return (
       <Layout>
@@ -67,6 +74,16 @@ class Dashboard extends React.Component {
                 </Link>
             </Menu.Item>
             <Menu.Item key="5" icon={<UploadOutlined />}>
+               <Link to={'/dashboard/contracts'}>    
+                  Мои контракты
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="6" icon={<UploadOutlined />}>
+               <Link to={'/dashboard/zakups'}>    
+                  Мои заявки
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="7" icon={<UploadOutlined />}>
                 <Link to={'/SignIn'}>
                     Выйти
                 </Link>
@@ -93,6 +110,8 @@ class Dashboard extends React.Component {
               <Route exact path={`/dashboard/dogovor`} component={Dogovor}/>
               <Route exact path={`/dashboard/chat`} component={Chat}/>
               <Route exact path={`/dashboard/message/:id`} component={Message}/>
+              <Route exact path={`/dashboard/contracts`} component={Contracts}/>
+              <Route exact path={`/dashboard/zakups`} component={Zakups}/>
               {/* <Route exact path={`/dashboard/map`} component={MapTab}/>
               <Route exact path={`/dashboard/brands`} component={Brands}/>
               <Route exact path={`/dashboard/brands/:id`} component={Brand}/> */}
