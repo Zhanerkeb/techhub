@@ -43,7 +43,8 @@ class Dashboard extends React.Component {
     return (
       <Layout>
         <Sider trigger={null}  collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
+          <div style={{height: '70px'}} className="logo"><Link  style={{paddingLeft: '5px'}}to='/'><h2>TechHub</h2></Link></div>
+          
           <Menu theme="dark" mode="inline" defaultSelectedKeys={[selectedKey]}>
             <Menu.Item key="1" icon={<UserOutlined />}>
                 <Link to={'/dashboard/account'}>  

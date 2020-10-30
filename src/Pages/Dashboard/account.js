@@ -2,17 +2,29 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
 function Account(props) {
-    const [form, setForm] = useState({})
+    const [form, setForm] = useState({
+        firstName: '',
+        lastName: '',
+        iin: '',
+        email: '',
+        rukovoditel: '',
+        login: ''
+    })
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      };
     const handleOk = e => {
         e.preventDefault()
-        axios.post('http://10.110.160.50:8008/api/users/register', {...form, roleId: 6, isActive: true}).
-        then(res => props.history.push('/dashboard')).
+        console.log(form)
+        axios.put('http://10.110.160.50:8008/api/users', form, {headers: headers}).
+        then(res => axios.post('http://10.110.160.50:8008/api/users/current', null, {headers: headers}).then(res => setForm(res.data.data))).
         catch(err => err)
     }
 
     useEffect(() => {
-        axios.get('http://10.110.160.50:8008/api/users/current').then(res => console.log(res.data))
-    })
+        axios.post('http://10.110.160.50:8008/api/users/current', null, {headers: headers}).then(res => setForm(res.data.data))
+    }, [])
 
     const onChange = e => {
         const {name, value} = e.target;
@@ -29,28 +41,29 @@ function Account(props) {
             <h2 className="f_p f_600 f_size_24 t_color3 mb_40" style={{textAlign: 'center'}}>Личный профиль</h2>
                                 <div className="form-group text_box">
                                         <label className="f_p text_c f_400">Имя</label>
-                                        <input type="text" placeholder="techhub" onChange={onChange} name="firstName"/>
+                                        <input value={form.firstName} type="text" placeholder="techhub" onChange={onChange} name="firstName"/>
                                     </div>
                                     <div className="form-group text_box">
                                         <label className="f_p text_c f_400">Фамилия</label>
-                                        <input type="text" placeholder="techhub" onChange={onChange} name="lastName"/>
+                                        <input value={form.lastName} type="text" placeholder="techhub" onChange={onChange} name="lastName"/>
                                     </div>
                                     <div className="form-group text_box">
-                                        <label className="f_p text_c f_400">Логин</label>
-                                        <input type="text" placeholder="techhub" onChange={onChange} name="login"/>
+                                        <label className="f_p text_c f_400">ИИН</label>
+                                        <input value={form.iin} type="text" placeholder="ИИН" onChange={onChange} name="iin"/>
+                                    </div>
+                                    <div className="form-group text_box">
+                                        <label className="f_p text_c f_400">Руководитель</label>
+                                        <input value={form.rukovoditel} type="text" placeholder="Руководитель" onChange={onChange} name="rukovoditel"/>
                                     </div>
                                     <div className="form-group text_box">
                                         <label className="f_p text_c f_400">Email</label>
-                                        <input type="text" onChange={onChange} name="email" placeholder="techhub@gmail.com"/>
+                                        <input value={form.email} type="text" onChange={onChange} name="email" placeholder="techhub@gmail.com"/>
                                     </div>
-                                    {/* <div className="form-group text_box">
-                                        <label className="f_p text_c f_400">Телефон</label>
-                                        <input type="text" onChange={onChange} name="phoneNumber" placeholder="77777777777"/>
-                                    </div> */}
                                     <div className="form-group text_box">
-                                        <label className="f_p text_c f_400">Пароль</label>
-                                        <input type="password" onChange={onChange} name="password"  placeholder="******"/>
+                                        <label className="f_p text_c f_400">Логин</label>
+                                        <input value={form.login} type="text" onChange={onChange} name="login" placeholder="Логин"/>
                                     </div>
+                                    
                                     {/* <div className="extra mb_20">
                                         <div className="checkbox remember">
                                             <label>
