@@ -22,9 +22,8 @@ const Process = () => {
                     </div>
                 </div>
             </section>
-            {/* <ServiceSubscribe/> */}
-            <iframe src="https://hub.tsd.kz/index.php?module=ext/public/form&id=3" width="100%" height="1500"  frameborder="0" scrolling="auto" onLoad="window.scrollTo(0, 0)"></iframe>
-        </div>
+            <ServiceSubscribe />
+     </div>
     )
 }
 export default Process;

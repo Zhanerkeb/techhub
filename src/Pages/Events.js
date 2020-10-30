@@ -39,8 +39,7 @@ const Events = () => {
      
       {/* <EventSponser />
       <EventLocation /> */}
-     {/* <ServiceSubscribe/> */}
-     <iframe src="https://hub.tsd.kz/index.php?module=ext/public/form&id=5" width="100%" height="1000"  frameborder="0" scrolling="auto" onLoad="window.scrollTo(0, 0)"></iframe>
+     <ServiceSubscribe/>
       {/* <FooterErp fClass="event_footer_area" FooterData={FooterData} /> */}
     </div>
   );

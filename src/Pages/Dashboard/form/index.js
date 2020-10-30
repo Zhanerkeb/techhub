@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import ServiceSubscribe from '../../../components/ServiceSubscribe';
 
 function Form(props) {
     
@@ -18,9 +19,9 @@ function Form(props) {
     }
     return (
         
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-             <iframe width="100%" height="1100px" src="https://hub.tsd.kz/index.php?module=ext/public/form&id=4" frameBorder="0"></iframe>
-        </div>
+        // <div style={{display: 'flex', justifyContent: 'center'}}>
+            <ServiceSubscribe/>
+        // </div>
     )
 }
 
